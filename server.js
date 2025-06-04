@@ -16,6 +16,11 @@ app.post('/okta-events', (req, res) => {
     //     console.log('Unauthorized request received');
     //     return res.status(401).send('Unauthorized');
     // }
+    
+    console.log('\n=== Incoming Request from Okta ===');
+    console.log('Headers:', JSON.stringify(req.headers, null, 2));
+    console.log('Body:', JSON.stringify(req.body, null, 2));
+    
 
     const body = req.body;
 
