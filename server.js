@@ -32,6 +32,8 @@ app.post('/okta-events', (req, res) => {
 
     // Handle actual event notifications
     console.log('Received Okta Event:', JSON.stringify(body, null, 2));
+    
+    console.log(`Success!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1`);
 
     // Always respond with 200 OK so Okta doesn't retry
     res.status(200).send();
