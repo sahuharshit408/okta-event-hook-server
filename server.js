@@ -14,6 +14,9 @@ app.use(bodyParser.json());
 app.post('/okta-events', (req, res) => {
     //Authenticate the request
     const authHeader = req.headers['authorization'];
+    
+    console.log('Authorization Header:', req.headers['authorization']);
+
     if (SHARED_SECRET && authHeader !== `Bearer ${SHARED_SECRET}`) {
         console.log('Unauthorized request received');
         return res.status(401).send('Unauthorized');
