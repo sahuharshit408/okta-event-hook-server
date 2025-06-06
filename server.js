@@ -44,6 +44,11 @@ app.post('/okta-events', (req, res) => {
     res.status(200).send();
 });
 
+app.use((req, res) => {
+  console.log(`Unmatched request: ${req.method} ${req.originalUrl}`);
+  res.status(404).send('Not Found');
+});
+
 app.listen(PORT, () => {
     console.log(`✅ Okta Event Hook server running at http://localhost:${PORT}/okta-events`);
 });
