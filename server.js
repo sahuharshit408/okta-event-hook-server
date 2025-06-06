@@ -8,7 +8,7 @@ const SHARED_SECRET = process.env.SHARED_SECRET;
 
 // Optional: use a shared secret to authenticate requests from Okta
 //const SHARED_SECRET = 'your-secret-key'; // Replace or remove if not using authentication
-
+console.log(`!!!!!!!!!!!!!!!!!!!!!!!! I got the Shared Secrest as `+SHARED_SECRET);
 app.use(bodyParser.json());
 
 app.post('/okta-events', (req, res) => {
