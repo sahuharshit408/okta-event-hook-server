@@ -11,6 +11,15 @@ const SHARED_SECRET = process.env.SHARED_SECRET;
 console.log(`!!!!!!!!!!!!!!!!!!!!!!!! I got the Shared Secrest as `+SHARED_SECRET);
 app.use(bodyParser.json());
 
+app.get('/okta-events', (req, res) => {
+  const verification = req.headers['x-okta-verification-challenge'];
+  if (verification) {
+    res.status(200).json({ verification });
+  } else {
+    res.status(400).send('Missing verification challenge');
+  }
+});
+
 app.post('/okta-events', (req, res) => {
     //Authenticate the request
     const authHeader = req.headers['authorization'];
