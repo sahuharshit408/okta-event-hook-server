@@ -4,18 +4,20 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
+const SHARED_SECRET = process.env.SHARED_SECRET;
+
 // Optional: use a shared secret to authenticate requests from Okta
 //const SHARED_SECRET = 'your-secret-key'; // Replace or remove if not using authentication
 
 app.use(bodyParser.json());
 
 app.post('/okta-events', (req, res) => {
-    // Optional: Authenticate the request
-    // const authHeader = req.headers['authorization'];
-    // if (SHARED_SECRET && authHeader !== `Bearer ${SHARED_SECRET}`) {
-    //     console.log('Unauthorized request received');
-    //     return res.status(401).send('Unauthorized');
-    // }
+    //Authenticate the request
+    const authHeader = req.headers['authorization'];
+    if (SHARED_SECRET && authHeader !== `Bearer ${SHARED_SECRET}`) {
+        console.log('Unauthorized request received');
+        return res.status(401).send('Unauthorized');
+    }
     
     console.log('\n=== Incoming Request from Okta ===');
     console.log('Headers:', JSON.stringify(req.headers, null, 2));
